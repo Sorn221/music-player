@@ -1,0 +1,322 @@
+/* public/css/app.css 
+ * Эстетика: Утонченная мрачность, контраст, темные тона. 
+ */
+
+/* --- 0. ПЕРЕМЕННЫЕ И БАЗОВЫЙ СКЕЛЕТ --- */
+:root {
+    --color-dark-void: #0d0d0f;         /* Почти чёрный фон */
+    --color-text-primary: #e0e0e0;      /* Светлый текст */
+    --color-text-secondary: #9a9a9a;    /* Серый, приглушённый текст */
+    --color-accent-blood: #a00000;      /* Акцентный красный для ссылок/выделения */
+    --color-border: #333;               /* Цвет тонких линий и разделителей */
+    --color-card-bg: #1a1a1a;           /* Фон карточек/блоков */
+    --font-primary: 'Arial', sans-serif;
+    --font-display: 'Times New Roman', serif; /* Более суровый шрифт для заголовков */
+}
+
+/* Фон: Глубокая тьма */
+body {
+    background-color: var(--color-dark-void);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Сброс стилей для ссылок */
+a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: var(--color-accent-blood);
+}
+
+/* Элементы, не требующие особого внимания */
+.text-secondary { 
+    color: var(--color-text-secondary); 
+    font-size: 0.9em; 
+}
+hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 40px 0;
+}
+
+/* --- 1. ТИПОГРАФИКА И ЗАГОЛОВКИ --- */
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.page-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.section-title {
+    color: var(--color-accent-blood);
+}
+
+/* --- 2. ОСНОВНОЙ LAYOUT --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    box-sizing: border-box;
+}
+
+/* HEADER */
+.app-header {
+    background-color: #000000;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header .logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 5px;
+    color: var(--color-accent-blood);
+    text-shadow: 1px 1px 2px #000;
+}
+
+.app-header nav a {
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* FOOTER */
+.app-footer {
+    background-color: #000000;
+    padding: 20px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--color-text-secondary);
+}
+
+/* --- 3. УНИВЕРСАЛЬНЫЙ СПИСОК (latest-releases) --- */
+.latest-releases {
+    display: grid;
+    /* Адаптивный grid: минимум 200px ширина колонки, заполнение по ширине */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+    gap: 30px; 
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+.album-card {
+    background: var(--color-card-bg);
+    padding: 15px;
+    border: 1px solid #222;
+    text-align: center;
+    box-sizing: border-box; /* Важно для избежания наложений */
+    width: 100%; 
+}
+
+.album-card .album-cover {
+    width: 100%;
+    height: auto;
+    max-width: 100%; 
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-border);
+}
+
+.album-card h3 {
+    border: none;
+    margin: 5px 0 5px 0;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+/* --- 4. ТЕГИ АТМОСФЕРЫ (Ключевая фича) --- */
+.tags {
+    margin-top: 5px;
+}
+.tags .tag {
+    display: inline-block;
+    background: #444;
+    color: white;
+    padding: 3px 8px;
+    margin: 2px 2px 5px 2px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+/* Цветовая дифференциация тегов */
+.atmosphere-lo-fi-rawness { background: #5a5a5a; }
+.atmosphere-atmospheric { background: #004d40; } /* Тёмно-зелёный */
+.atmosphere-melodic { background: #4a148c; } /* Фиолетовый */
+.tag.theme { background: #404040; border-color: var(--color-accent-blood); } /* Концептуальные теги */
+
+
+/* --- 5. СТРАНИЦА АЛЬБОМА (album/show.blade.php) --- */
+.album-view-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr; /* Сайдбар и основной контент */
+    gap: 40px;
+}
+.album-sidebar .full-cover {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid var(--color-border);
+}
+
+.track-list {
+    list-style: none;
+    padding: 0;
+}
+.track-item {
+    border-bottom: 1px dashed #222;
+    padding: 8px 0;
+}
+.track-header {
+    display: flex;
+    align-items: center;
+}
+.track-duration {
+    color: var(--color-text-secondary);
+    font-size: 0.85em;
+    margin-left: 10px;
+    margin-right: auto;
+}
+.lyrics-toggle {
+    background: none;
+    border: 1px solid var(--color-text-secondary);
+    color: var(--color-text-secondary);
+    padding: 2px 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.lyrics-toggle:hover {
+    color: var(--color-accent-blood);
+    border-color: var(--color-accent-blood);
+}
+.lyrics-block {
+    margin-top: 10px;
+    padding: 10px;
+    background: #111;
+    border-left: 3px solid var(--color-accent-blood);
+}
+.lyrics-hidden {
+    display: none;
+}
+pre {
+    white-space: pre-wrap;
+    font-family: var(--font-primary);
+    font-size: 0.9em;
+    color: var(--color-text-primary);
+}
+
+
+/* --- 6. СТРАНИЦА АРТИСТА (artist/show.blade.php) --- */
+.artist-header {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+.artist-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: 3px solid var(--color-accent-blood);
+    flex-shrink: 0;
+}
+.artist-bio {
+    margin-top: 15px;
+    font-style: italic;
+    color: var(--color-text-secondary);
+}
+.influence-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.influence-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+.influence-list li {
+    padding: 5px 0;
+    border-bottom: 1px dotted #222;
+}
+.underground-flag {
+    color: var(--color-accent-blood);
+    font-weight: bold;
+    font-size: 0.9em;
+    display: inline-block;
+    padding: 5px;
+    border: 1px dashed var(--color-accent-blood);
+}
+
+
+/* --- 7. СТРАНИЦА ПРОФИЛЯ (profile/show.blade.php) --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+.stat-card {
+    background: var(--color-card-bg);
+    padding: 20px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+}
+.stat-card h3 {
+    border: none;
+    margin-top: 0;
+    font-size: 1.2em;
+    color: var(--color-accent-blood);
+    padding: 0;
+    margin-bottom: 15px;
+}
+.stat-value {
+    color: var(--color-text-primary);
+    font-weight: bold;
+}
+
+/* --- 8. ПАГИНАЦИЯ --- */
+.pagination-links {
+    margin-top: 30px; 
+    text-align: center;
+}
+.pagination-links nav {
+    display: inline-block;
+}
+.pagination-links .page-item {
+    display: inline-block;
+    margin: 0 5px;
+}
+.pagination-links .page-link {
+    color: var(--color-text-secondary);
+    padding: 5px 10px;
+    border: 1px solid var(--color-border);
+    transition: all 0.2s;
+}
+.pagination-links .page-link:hover {
+    background: #252525;
+}
+.pagination-links .page-item.active .page-link {
+    background: var(--color-accent-blood);
+    color: white;
+    border-color: var(--color-accent-blood);
+    pointer-events: none; /* Активная страница некликабельна */
+}

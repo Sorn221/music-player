@@ -1,0 +1,137 @@
+/* public/css/app.css */
+
+/* --- ПЕРЕМЕННЫЕ И БАЗОВЫЙ СКЕЛЕТ --- */
+:root {
+    --color-dark-void: #0d0d0f; /* Почти чёрный фон */
+    --color-text-primary: #e0e0e0; /* Светлый текст */
+    --color-text-secondary: #9a9a9a; /* Серый, приглушённый текст */
+    --color-accent-blood: #a00000; /* Акцентный красный для ссылок/выделения */
+    --color-border: #333;
+    --font-primary: 'Arial', sans-serif;
+    --font-display: 'Times New Roman', serif; /* Используем более суровый шрифт для заголовков */
+}
+
+/* Фон: Глубокая тьма */
+body {
+    background-color: var(--color-dark-void);
+    color: var(--color-text-primary);
+    font-family: var(--font-primary);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Сброс стилей для ссылок */
+a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+a:hover {
+    color: var(--color-accent-blood);
+}
+
+/* --- ТИПОГРАФИКА И ЗАГОЛОВКИ --- */
+h1, h2, h3 {
+    font-family: var(--font-display);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* --- ОСНОВНОЙ LAYOUT --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    min-height: 75vh; /* Чтобы футер был внизу */
+}
+
+/* --- HEADER --- */
+.app-header {
+    background-color: #000000;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header .logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 5px;
+    color: var(--color-accent-blood);
+    text-shadow: 1px 1px 2px #000;
+}
+
+.app-header nav a {
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* --- FOOTER --- */
+.app-footer {
+    background-color: #000000;
+    padding: 20px 20px;
+    margin-top: 40px;
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--color-text-secondary);
+}
+
+/* --- КАРТОЧКИ АЛЬБОМОВ --- */
+.latest-releases {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+.album-card {
+    background: #1a1a1a;
+    padding: 15px;
+    border: 1px solid #222;
+    text-align: center;
+}
+
+.album-card .album-cover {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-border);
+}
+
+.album-card h3 {
+    border: none;
+    margin: 5px 0 10px 0;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+/* --- ТЕГИ АТМОСФЕРЫ (Ключевая фича) --- */
+.tags {
+    margin-top: 10px;
+}
+.tags .tag {
+    display: inline-block;
+    background: #444;
+    color: white;
+    padding: 3px 8px;
+    margin: 2px;
+    font-size: 0.75em;
+    text-transform: uppercase;
+    border-radius: 2px;
+}
+/* Выделение ключевых тегов */
+.atmosphere-lo-fi-rawness { background: #5a5a5a; }
+.atmosphere-atmospheric { background: #004d40; } /* Тёмно-зелёный */
+.atmosphere-melodic { background: #4a148c; } /* Фиолетовый */
