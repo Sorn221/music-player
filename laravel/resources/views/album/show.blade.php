@@ -7,13 +7,13 @@
 <div class="album-view-grid">
     <aside class="album-sidebar">
         <img src="{{ asset($album->cover_image_path) }}" alt="{{ $album->title }}" class="full-cover">
-        
+
         <h2>{{ $album->title }}</h2>
         <h4 style="color: var(--color-accent-blood); margin-top: -15px;">
             <a href="{{ route('artist.show', $album->artist->slug) }}">{{ $album->artist->name }}</a>
         </h4>
-        
-        <p>Год выпуска: **{{ $album->release_year }}**</p>
+
+        <p>Год выпуска: {{ $album->release_year }}</p>
         <p>Лейбл: {{ $album->label->name ?? 'Неизвестен' }}</p>
 
         <div class="metadata-tags">
@@ -27,12 +27,12 @@
     </aside>
 
     <section class="album-main-content">
-        <h3>Треклист и Лирика</h3>
+        <h3>Треклист</h3>
         <ol class="track-list">
             @foreach ($album->tracks as $track)
                 <li class="track-item">
                     <div class="track-header">
-                        <strong>{{ $track->track_number }}. {{ $track->title }}</strong> 
+                        <strong>{{ $track->track_number }}. {{ $track->title }}</strong>
                         <span class="track-duration">[{{ gmdate("i:s", $track->duration ?? 0) }}]</span>
                         @if ($track->lyrics)
                             <button onclick="toggleLyrics('track-lyrics-{{ $track->id }}')" class="lyrics-toggle">
@@ -40,7 +40,7 @@
                             </button>
                         @endif
                     </div>
-                    
+
                     @if ($track->lyrics)
                         <div id="track-lyrics-{{ $track->id }}" class="lyrics-block lyrics-hidden">
                             <pre>{{ $track->lyrics }}</pre>
@@ -52,7 +52,7 @@
         </ol>
 
         @if ($recommendations->count())
-            <h3 style="margin-top: 40px;">Схожая Атмосфера</h3>
+            <h3 style="margin-top: 40px;">Схожая атмосфера</h3>
             <div class="latest-releases" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
                 @foreach ($recommendations as $recAlbum)
                     <div class="album-card">
@@ -64,7 +64,7 @@
                 @endforeach
             </div>
         @endif
-        
+
     </section>
 </div>
 

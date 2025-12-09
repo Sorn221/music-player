@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\AlbumController;
@@ -37,3 +39,46 @@ Route::get('/forum', function () {
     // Временно заглушка
     return view('forum.index');
 })->name('forum');
+
+// --- AUTH / PROFILE (lightweight demo endpoints - replace with real controllers) ---
+Route::get('/login', function () {
+    // Front-end handles modal; this route kept for compatibility
+    return redirect()->route('home');
+})->name('login');
+
+Route::get('/register', function () {
+    return redirect()->route('home');
+})->name('register');
+
+// Demo JSON endpoints for frontend to POST to (they don't create real users).
+Route::post('/auth/login', function (Request $request) {
+    // Basic placeholder to keep front-end happy; replace with real auth logic.
+    return response()->json([
+        'ok' => true,
+        'message' => 'Demo login accepted'
+    ]);
+});
+Route::post('/auth/register', function (Request $request) {
+    return response()->json([
+        'ok' => true,
+        'message' => 'Demo register accepted'
+    ]);
+});
+Route::post('/auth/logout', function (Request $request) {
+    return response()->json(['ok' => true, 'message' => 'Logged out (demo)']);
+});
+
+// Profile page (you have a view at resources/views/profile/show.blade.php)
+Route::get('/profile', function (Request $request) {
+    // In a real app use auth and controller: return view('profile.show', ['user' => Auth::user()]);
+    $demoUser = (object)[
+        'name' => 'Demo Fan',
+        'created_at' => now(),
+        'albums_listened_count' => 174,
+        'norway_percent' => '23%',
+        'collection_count' => 12,
+        'collection_albums' => collect()
+    ];
+    return view('profile.show', ['user' => $demoUser]);
+})->name('profile.show');
+

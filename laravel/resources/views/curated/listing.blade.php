@@ -8,8 +8,8 @@
     @if ($albums->isEmpty())
         <p>В этом разделе пока нет записей, соответствующих критериям.</p>
     @else
-        <p class="text-secondary">Найдено **{{ $albums->total() }}** альбомов.</p>
-        
+        <p class="text-secondary">Найдено {{ $albums->total() }} альбомов.</p>
+
         <div class="latest-releases">
             @foreach ($albums as $album)
                 <div class="album-card">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="pagination-links" style="margin-top: 30px; text-align: center;">
-            {{ $albums->links() }} 
+            {{ $albums->links() }}
         </div>
 
     @endif
