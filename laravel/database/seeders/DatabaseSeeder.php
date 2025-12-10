@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             TagSeeder::class,
             ThemeSeeder::class,
-            // Сначала запускаем справочники, потом основной контент
-            ContentSeeder::class, 
+            ContentSeeder::class,
+            ForumSeeder::class,
         ]);
     }
 }

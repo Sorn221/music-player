@@ -26,7 +26,7 @@
         </div>
 
         <nav class="me-auto d-none d-md-flex">
-            <a class="nav-link text-secondary" href="{{ route('forum') }}">Сообщество</a>
+            <a class="nav-link text-secondary" href="{{ route('forum.index') }}">Сообщество</a>
             <a class="nav-link text-secondary" href="{{ route('demos') }}">Андеграунд</a>
         </nav>
 
@@ -81,5 +81,50 @@
             if (element) element.classList.toggle('lyrics-hidden');
         }
     </script>
+    {{-- СКВОЗНОЙ МИНИ-ПЛЕЕР --}}
+    <div id="mini-player" class="mini-player fixed-bottom" style="display:none;">
+        <div class="container d-flex align-items-center justify-content-between">
+
+            {{-- 1. Информация о треке --}}
+            <div class="d-flex align-items-center flex-grow-1 me-3" style="max-width: 300px;">
+                <img id="player-cover" src="" alt="Обложка" class="player-cover me-3">
+                <div>
+                    <div id="player-title" class="fw-bold text-truncate" title=""></div>
+                    <div id="player-artist" class="text-secondary small text-truncate" title=""></div>
+                </div>
+            </div>
+
+            {{-- 2. Элементы управления и Прогресс --}}
+            <div class="d-flex flex-column align-items-center mx-3 flex-grow-1" style="max-width: 50%;">
+
+                {{-- Управление --}}
+                <div class="controls mb-1">
+                    <button id="btn-prev" class="btn btn-sm" title="Предыдущий"><i class="fas fa-step-backward"></i></button>
+                    <button id="btn-play-pause" class="btn btn-primary btn-sm rounded-circle mx-3" style="width: 40px; height: 40px;"><i class="fas fa-play"></i></button>
+                    <button id="btn-next" class="btn btn-sm" title="Следующий"><i class="fas fa-step-forward"></i></button>
+                </div>
+
+                {{-- Прогресс-бар --}}
+                <div class="w-100 d-flex align-items-center mt-1">
+                    <span id="player-time-current" class="small text-secondary me-2">0:00</span>
+                    <input type="range" id="player-progress" class="form-range flex-grow-1" value="0" min="0" max="100">
+                    <span id="player-time-total" class="small text-secondary ms-2">0:00</span>
+                </div>
+            </div>
+
+            {{-- 3. Дополнительные элементы (Громкость) --}}
+            <div class="d-flex align-items-center justify-content-end" style="width: 200px;">
+                <i class="fas fa-volume-up text-secondary me-2"></i>
+                <input type="range" id="player-volume" class="form-range" value="50" min="0" max="100" style="width: 100px;">
+            </div>
+
+        </div>
+    </div>
+
+    <audio id="audio-element"></audio>
+
+{{--    <script src="https://kit.fontawesome.com/ВАШ_KEY_FA.js"></script>--}}
+    <script src="{{ asset('js/player.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

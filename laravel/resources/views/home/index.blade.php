@@ -109,7 +109,7 @@
     </section>
 
     <p style="text-align:center; margin-top:28px;">
-        <a href="{{ route('curated.theme', ['theme' => 'all']) }}" class="btn">Все подборки →</a>
+        <a href="{{ route('curated.index') }}" class="btn">Все подборки →</a>
     </p>
 @endsection
 
